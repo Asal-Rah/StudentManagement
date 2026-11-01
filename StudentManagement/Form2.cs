@@ -55,7 +55,8 @@ namespace StudentManagement
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form9 ProfProfile = new Form9();
+            ProfProfile.ShowDialog();
         }
     }
 }

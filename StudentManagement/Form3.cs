@@ -1,4 +1,6 @@
-﻿using StudentManagement.BusinessLayer.Extensions;
+﻿using StudentManagement.BusinessLayer.Dtos;
+using StudentManagement.BusinessLayer.Extensions;
+using StudentManagement.BusinessLayer.Functionality;
 using StudentManagement.DataLayer;
 using System;
 using System.Collections.Generic;
@@ -22,22 +24,42 @@ namespace StudentManagement
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            Student student = new Student(FisrtNametextBox.Text, LastNametextBox.Text, Convert.ToInt32(AgetextBox.Text), PhoneNumbertextBox.Text.ToMoblieFormat(), NationalCodetextBox.Text);
+            /*Student student = new Student(FisrtNametextBox.Text, LastNametextBox.Text, Convert.ToInt32(AgetextBox.Text), PhoneNumbertextBox.Text.ToMoblieFormat(), NationalCodetextBox.Text);
             string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "Students.json");
             /*var options = new JsonSerializerOptions
             {
                 WriteIndented = true
-            };*/
+            };
+
             
             string json = JsonSerializer.Serialize(student);
-            File.AppendAllText(path, json + Environment.NewLine);
+            File.AppendAllText(path, json + Environment.NewLine); */
             //File.AppendAllText(path, json);
+
+            RegisterStudentDto studentDto = new RegisterStudentDto()
+            {
+                firstName = FisrtNametextBox.Text,
+                lastName = LastNametextBox.Text,
+                age = Convert.ToInt32(AgetextBox.Text), 
+                phoneNumber = PhoneNumbertextBox.Text.ToMoblieFormat(),
+                nationalCode = NationalCodetextBox.Text
+            };
+            bool success = RegisterStudent.RegisterStudents(studentDto);
+        
             FisrtNametextBox.Text = string.Empty;
             LastNametextBox.Text = string.Empty;
             AgetextBox.Text = string.Empty;
             PhoneNumbertextBox.Text = string.Empty;
             NationalCodetextBox.Text = string.Empty;
-            MessageBox.Show("The student was registered successfully!!");
+            if (success)
+            {
+                MessageBox.Show("The student was registered successfully!!");
+            }
+            else
+            {
+                throw new Exception("The registeration process was abrupted unexpectedly! Please try again!!");
+            }
+            
 
 
 
