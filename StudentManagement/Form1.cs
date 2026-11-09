@@ -35,7 +35,7 @@ namespace StudentManagement
                 }
                 else if (_type.Equals("student"))
                 {
-                    Form13 StudentDashboard = new Form13();
+                    Form13 StudentDashboard = new Form13(usernameTextBox.Text);
                     StudentDashboard.ShowDialog();
                 }
                 

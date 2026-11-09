@@ -30,13 +30,14 @@
         {
             menuStrip1 = new MenuStrip();
             coursesToolStripMenuItem = new ToolStripMenuItem();
+            myCoursesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { coursesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { coursesToolStripMenuItem, myCoursesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 37);
@@ -50,6 +51,16 @@
             coursesToolStripMenuItem.Name = "coursesToolStripMenuItem";
             coursesToolStripMenuItem.Size = new Size(117, 33);
             coursesToolStripMenuItem.Text = "Courses";
+            coursesToolStripMenuItem.Click += coursesToolStripMenuItem_Click;
+            // 
+            // myCoursesToolStripMenuItem
+            // 
+            myCoursesToolStripMenuItem.BackColor = Color.MistyRose;
+            myCoursesToolStripMenuItem.Font = new Font("Lucida Calligraphy", 13.8F);
+            myCoursesToolStripMenuItem.Name = "myCoursesToolStripMenuItem";
+            myCoursesToolStripMenuItem.Size = new Size(168, 33);
+            myCoursesToolStripMenuItem.Text = "My Courses";
+            myCoursesToolStripMenuItem.Click += myCoursesToolStripMenuItem_Click_1;
             // 
             // Form13
             // 
@@ -70,5 +81,6 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem coursesToolStripMenuItem;
+        private ToolStripMenuItem myCoursesToolStripMenuItem;
     }
 }

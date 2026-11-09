@@ -1,4 +1,7 @@
-﻿using StudentManagement.DataLayer;
+﻿using StudentManagement.BusinessLayer.Dtos;
+using StudentManagement.BusinessLayer.Extensions;
+using StudentManagement.BusinessLayer.Functionality;
+using StudentManagement.DataLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,24 +24,33 @@ namespace StudentManagement
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            string firstName = ProfNametextBox.Text;
-            string lastName = ProfLastNametextBox.Text;
-            int Age = Convert.ToInt32(ProfAgetextBox.Text);
-            string phoneNumber = ProfPhonetextBox.Text;
-            string nationalCode = ProfNarionalCodetextBox.Text;
-            string card = ProfCardtextBox.Text;
+            
 
-            Professor prof = new Professor(firstName, lastName, Age, phoneNumber, nationalCode, card);
-            string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "Professors.json");
-            string json = JsonSerializer.Serialize(prof);
-            File.AppendAllText(path, json + Environment.NewLine);
+            RegisterProfDto dto = new RegisterProfDto()
+            {
+               firstName = ProfNametextBox.Text,
+               lastName = ProfLastNametextBox.Text,
+               age = Convert.ToInt32(ProfAgetextBox.Text),
+               phoneNumber = ProfPhonetextBox.Text.ToMoblieFormat(),
+               nationalCode = ProfNarionalCodetextBox.Text,
+               card = ProfCardtextBox.Text
+            };
+
+            bool success = ProfessorFunc.RegisterProfessor(dto);
             ProfNametextBox.Text = string.Empty;
             ProfLastNametextBox.Text = string.Empty;
             ProfAgetextBox.Text = string.Empty;
             ProfPhonetextBox.Text = string.Empty;
             ProfNarionalCodetextBox.Text = string.Empty;
             ProfCardtextBox.Text = string.Empty; ;
-            MessageBox.Show("The new Professor has been successfully registered!!");
+            if (success)
+            {
+                MessageBox.Show("The professor was registered successfully!!");
+            }
+            else
+            {
+                throw new Exception("The registeration process was abrupted unexpectedly! Please try again!!");
+            }
 
         }
     }

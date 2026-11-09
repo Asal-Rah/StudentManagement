@@ -99,7 +99,7 @@
             // 
             ProfileLastNameLabel.AutoSize = true;
             ProfileLastNameLabel.Font = new Font("Lucida Calligraphy", 13.8F);
-            ProfileLastNameLabel.Location = new Point(24, 353);
+            ProfileLastNameLabel.Location = new Point(34, 353);
             ProfileLastNameLabel.Name = "ProfileLastNameLabel";
             ProfileLastNameLabel.Size = new Size(146, 29);
             ProfileLastNameLabel.TabIndex = 14;

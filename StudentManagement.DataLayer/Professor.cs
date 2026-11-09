@@ -52,8 +52,9 @@ namespace StudentManagement.DataLayer
                 { "6396", "Sarmayeh" },
                 { "9919", "Mellat" }
             };
-        public String card { get; set; }
-        public Professor(string firstName, string lastName, int age, string phoneNumber, string nationalCode, string card) : base(firstName, lastName, age, phoneNumber, nationalCode)
+        public string card { get; set; }
+        public List<Course> TaughtCourses { get; set; }
+        public Professor(string firstName, string lastName, int age, string phoneNumber, string nationalCode, string card, List<Course> taughtCourses) : base(firstName, lastName, age, phoneNumber, nationalCode)
         {
             if(card.Length < 16)
             {
@@ -66,6 +67,7 @@ namespace StudentManagement.DataLayer
             }
             
             this.card = card;
+            this.TaughtCourses = taughtCourses;
 
         }
     }

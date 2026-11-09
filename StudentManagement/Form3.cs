@@ -44,7 +44,7 @@ namespace StudentManagement
                 phoneNumber = PhoneNumbertextBox.Text.ToMoblieFormat(),
                 nationalCode = NationalCodetextBox.Text
             };
-            bool success = RegisterStudent.RegisterStudents(studentDto);
+            bool success = StudentFunc.RegisterStudents(studentDto);
         
             FisrtNametextBox.Text = string.Empty;
             LastNametextBox.Text = string.Empty;
