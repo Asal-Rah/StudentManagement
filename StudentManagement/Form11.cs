@@ -19,15 +19,15 @@ namespace StudentManagement
 
         private void HaveButton_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "StdLoginCredentials.txt");
             string type = "student";
-            Form1 LoginForm = new Form1(path,type);
+            Form1 LoginForm = new Form1(type);
             LoginForm.ShowDialog();
         }
 
         private void DontHaveButton_Click(object sender, EventArgs e)
         {
-            Form12 SignUp = new Form12();
+
+            Form3 SignUp = new Form3();
             SignUp.ShowDialog();
 
 

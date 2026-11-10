@@ -33,7 +33,7 @@ namespace StudentManagement
         {
             string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "LoginCredentials.txt");
             string type = "admin";
-            Form1 AdminLogin = new Form1(path, type);
+            Form1 AdminLogin = new Form1(type);
             AdminLogin.ShowDialog();
 
 

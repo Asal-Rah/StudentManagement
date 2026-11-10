@@ -14,15 +14,17 @@ namespace StudentManagement
 {
     public partial class Form12 : Form
     {
-        public Form12()
+        private int _StudentId;
+        public Form12(int StudentId)
         {
             InitializeComponent();
+            _StudentId = StudentId;
+
         }
 
         private void StdCreateButton_Click(object sender, EventArgs e)
         {
-            Form3 RegForm = new Form3();
-            RegForm.ShowDialog();
+            
            
          
             UserDto userDto = new UserDto()
@@ -30,10 +32,8 @@ namespace StudentManagement
                 userName = StdUsernameTextbox.Text,
                 password = StdPasswordTextbox.Text
             };
-            string filePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "StdLoginCredentials.txt");
-
-            bool alreadyExisted = CreateUser.CreateUsers(userDto, filePath);
-            if(alreadyExisted)
+            bool success = SharedFunc.CreateUsers(userDto, "student", _StudentId);
+            if(success is false)
             {
                 MessageBox.Show("This student already exists!!");
                 StdUsernameTextbox.Text = string.Empty;

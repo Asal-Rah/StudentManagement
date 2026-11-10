@@ -17,6 +17,7 @@ namespace StudentManagement
 {
     public partial class Form3 : Form
     {
+        private string _type;
         public Form3()
         {
             InitializeComponent();
@@ -24,17 +25,7 @@ namespace StudentManagement
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            /*Student student = new Student(FisrtNametextBox.Text, LastNametextBox.Text, Convert.ToInt32(AgetextBox.Text), PhoneNumbertextBox.Text.ToMoblieFormat(), NationalCodetextBox.Text);
-            string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "Students.json");
-            /*var options = new JsonSerializerOptions
-            {
-                WriteIndented = true
-            };
-
-            
-            string json = JsonSerializer.Serialize(student);
-            File.AppendAllText(path, json + Environment.NewLine); */
-            //File.AppendAllText(path, json);
+          
 
             RegisterStudentDto studentDto = new RegisterStudentDto()
             {
@@ -54,12 +45,17 @@ namespace StudentManagement
             if (success)
             {
                 MessageBox.Show("The student was registered successfully!!");
+                int StudentId = StudentFunc.FindIdByNationalCode(studentDto.nationalCode);
+                Form12 createStAccount = new Form12(StudentId);
+                createStAccount.ShowDialog();
             }
             else
             {
-                throw new Exception("The registeration process was abrupted unexpectedly! Please try again!!");
+                MessageBox.Show("The registeration process was abrupted unexpectedly! Please try again!!");
             }
+
             
+
 
 
 

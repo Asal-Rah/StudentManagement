@@ -53,7 +53,7 @@ namespace StudentManagement
 
         private void coursesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoursesList courseList = new CoursesList();
+            CoursesList courseList = new CoursesList(_Id);
             courseList.Show();
         }
 

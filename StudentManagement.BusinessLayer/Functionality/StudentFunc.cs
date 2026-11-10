@@ -20,6 +20,13 @@ namespace StudentManagement.BusinessLayer.Functionality
         public static bool RegisterStudents(RegisterStudentDto dto)
         {
             bool IsRegistered = false;
+
+            if (CheckStudentExistence(dto))
+            {
+                return IsRegistered;
+            }
+
+
             Student student = new Student(dto.firstName, dto.lastName, dto.age, dto.phoneNumber, dto.nationalCode);
             //json
             string path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "Students.json");
@@ -46,9 +53,36 @@ namespace StudentManagement.BusinessLayer.Functionality
             //sql
 
             IsRegistered = true;
+
             return IsRegistered;
 
             
+        }
+
+
+        public static bool CheckStudentExistence(RegisterStudentDto dto)
+        {
+            string connection = "Data Source=.;Initial Catalog=StudentManagement;Integrated Security=True;TrustServerCertificate=True";
+            SqlConnection con = new SqlConnection(connection);
+            con.Open();
+            string StudentExistencequery = $"SELECT Id from Student where nationalcode = {dto.nationalCode}";
+
+
+            using (SqlCommand cmd = new SqlCommand(StudentExistencequery,con))
+            {
+                int result = Convert.ToInt32(cmd.ExecuteScalar());
+                if (result != 0 )
+                {
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+
         }
 
 
@@ -57,7 +91,7 @@ namespace StudentManagement.BusinessLayer.Functionality
             try
             {
                 string termCode = "";
-                int studentId = 0;
+                int studentId = dto.StudentId;
                 int existed = 0; 
 
                 string connection = "Data Source=.;Initial Catalog=StudentManagement;Integrated Security=True;TrustServerCertificate=True";
@@ -90,15 +124,7 @@ namespace StudentManagement.BusinessLayer.Functionality
 
                 }
 
-                using (SqlCommand cmd = new SqlCommand(studentquery, con))
-                {
-
-                    cmd.Parameters.Add("@nationalcode", SqlDbType.VarChar).Value = dto.studentNationalCode;
-                    //SqlDataReader reader = cmd.ExecuteReader();
-                    studentId = Convert.ToInt32(cmd.ExecuteScalar());
-
-
-                }
+               
 
 
                 using (SqlCommand cmd = new SqlCommand(enrollquery, con))
@@ -114,7 +140,9 @@ namespace StudentManagement.BusinessLayer.Functionality
                 using (SqlCommand cmd = new SqlCommand(StudentCoursequery, con))
                 {
                     cmd.Parameters.Add("@StudentId", SqlDbType.Int).Value = studentId;
-                    
+                    cmd.Parameters.Add("@termcode", SqlDbType.VarChar).Value = termCode;
+                    cmd.Parameters.Add("@CourseId", SqlDbType.VarChar).Value = dto.ChosenCourseId;
+
                     cmd.ExecuteNonQuery();
 
                 }
@@ -129,6 +157,18 @@ namespace StudentManagement.BusinessLayer.Functionality
             }
 
             
+        }
+
+        public static int FindIdByNationalCode(string nationalCode)
+        {
+            string connection = "Data Source=.;Initial Catalog=StudentManagement;Integrated Security=True;TrustServerCertificate=True";
+            SqlConnection con = new SqlConnection(connection);
+            string query = $"SELECT Id FROM Student where nationalCode = {nationalCode}";
+            SqlCommand cmd = new SqlCommand(query, con);
+            con.Open();
+            int Id = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            return Id;
         }
     }
 }

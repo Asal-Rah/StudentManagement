@@ -24,27 +24,30 @@ namespace StudentManagement
             string username = UsernametextBox.Text;
             string password = PasswordtextBox.Text;
 
-            UserDto adminDto = new UserDto()
+
+            UserDto adminDto = new UserDto
             {
-                userName = UsernametextBox.Text,
-                password = PasswordtextBox.Text
+                userName = username,
+                password = password
             };
-            string filePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "files", "LoginCredentials.txt");
+            string type = "admin";
+            bool success = SharedFunc.CreateUsers(adminDto, type);
 
-            bool alreadyExisted = CreateUser.CreateUsers(adminDto, filePath);
-
-
-            if (alreadyExisted)
+            
+            if(success)
             {
-                MessageBox.Show("This user already exists!!");
-                UsernametextBox.Text = string.Empty;
-                PasswordtextBox.Text = string.Empty;
+                MessageBox.Show("The new admin was created successfully!!");
+                
 
             }
             else
             {
-                MessageBox.Show("The new admin was created successfully!!");
+                MessageBox.Show("This user admin already exists!!");
+               
             }
+
+            UsernametextBox.Text = string.Empty;
+            PasswordtextBox.Text = string.Empty;
 
         }
     }

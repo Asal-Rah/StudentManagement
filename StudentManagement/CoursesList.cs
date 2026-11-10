@@ -16,10 +16,11 @@ namespace StudentManagement
 {
     public partial class CoursesList : Form
     {
-        private string deafault;
+        private int _Id;
 
-        public CoursesList()
+        public CoursesList(int Id )
         {
+            _Id = Id;
             InitializeComponent();
             List<Course> courses = GetCourses();
             CourseListGrid.AutoGenerateColumns = true;
@@ -93,13 +94,13 @@ namespace StudentManagement
         {
            
             int ChosenCourseId = int.Parse(CourseTextBox.Text);
-            string nationalCode = nationalCodeCourseTextBox.Text;
+            // string nationalCode = nationalCodeCourseTextBox.Text;
 
             EnrollmentDto dto = new EnrollmentDto
             {
                 ChosenCourseId = ChosenCourseId,
-                studentNationalCode = nationalCode
-            };
+                StudentId = _Id
+            }; 
 
             bool success = StudentFunc.enroll(dto);
             if (success)

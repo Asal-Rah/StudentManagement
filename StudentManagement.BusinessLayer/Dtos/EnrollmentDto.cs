@@ -10,7 +10,7 @@ namespace StudentManagement.BusinessLayer.Dtos
     {
 
 
-        public string studentNationalCode {  get; set; } 
+        public int StudentId {  get; set; } 
 
         public int ChosenCourseId { get; set; }
     }
