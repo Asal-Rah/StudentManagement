@@ -94,6 +94,7 @@ namespace StudentManagement.BusinessLayer.Functionality
                 int studentId = dto.StudentId;
                 int existed = 0; 
 
+
                 string connection = "Data Source=.;Initial Catalog=StudentManagement;Integrated Security=True;TrustServerCertificate=True";
                 SqlConnection con = new SqlConnection(connection);
                 con.Open();
@@ -102,8 +103,7 @@ namespace StudentManagement.BusinessLayer.Functionality
                 string enrollquery = @"INSERT INTO Enrollment (StudentId, RegistrationStatus, TermCode) values ( @StudentId , @RegisterStatus , @termcode) ";
                 string StudentCoursequery = @"INSERT INTO StudentTakenCourses (StudentId, CourseId, termcode) values (@StudentId , @CourseId, @termcode)";
                 string checkExistence = @"select 1 from StudentTakenCourses stc where courseId = @CourseId  and termcode = @termcode ";
-
-                
+                bool alreadyEnrolledTerm = false;
 
 
                 using (SqlCommand cmd = new SqlCommand(termquery, con))
@@ -113,6 +113,8 @@ namespace StudentManagement.BusinessLayer.Functionality
 
 
                 }
+                string checkEnrollment = $"select 1 from Enrollment where studentId = {studentId} and termcode = '{termCode}'";
+
 
                 using (SqlCommand cmd = new SqlCommand(checkExistence, con))
                 {
@@ -124,18 +126,28 @@ namespace StudentManagement.BusinessLayer.Functionality
 
                 }
 
-               
-
-
-                using (SqlCommand cmd = new SqlCommand(enrollquery, con))
+                using (SqlCommand cmd = new SqlCommand(checkEnrollment, con))
                 {
-                    cmd.Parameters.Add("@StudentId", SqlDbType.Int).Value = studentId;
-                    cmd.Parameters.Add("@termcode", SqlDbType.VarChar).Value = termCode;
-                    cmd.Parameters.Add("@RegisterStatus", SqlDbType.Int).Value = RegistrationStatus.reserved;
-
-                    cmd.ExecuteNonQuery();
-
+                    object? result = cmd.ExecuteScalar();
+                    if (result is not null)
+                    {
+                        alreadyEnrolledTerm = true;
+                    }
                 }
+
+                if (!alreadyEnrolledTerm)
+                    {
+                        using (SqlCommand cmd = new SqlCommand(enrollquery, con))
+                        {
+
+                            cmd.Parameters.Add("@StudentId", SqlDbType.Int).Value = studentId;
+                            cmd.Parameters.Add("@termcode", SqlDbType.VarChar).Value = termCode;
+                            cmd.Parameters.Add("@RegisterStatus", SqlDbType.Int).Value = RegistrationStatus.reserved;
+
+                            cmd.ExecuteNonQuery();
+
+                        }
+                    }
 
                 using (SqlCommand cmd = new SqlCommand(StudentCoursequery, con))
                 {
