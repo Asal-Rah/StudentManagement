@@ -45,22 +45,29 @@ namespace StudentManagement
             if (success)
             {
                 MessageBox.Show("The term was created successfully!!");
+                TermCodeTextbox.Text = string.Empty;
+                TermSeasontextBox.Text = string.Empty;
+                TermStarttextBox.Text = string.Empty;
+                TermEndtextBox.Text = string.Empty;
+
+                TermCourse tc = new TermCourse();
+                tc.ShowDialog();
 
             }
             else
             {
                 MessageBox.Show("The term could not be created at this moment!!");
+                TermCodeTextbox.Text = string.Empty;
+                TermSeasontextBox.Text = string.Empty;
+                TermStarttextBox.Text = string.Empty;
+                TermEndtextBox.Text = string.Empty;
+
+            
 
 
             }
 
-            TermCodeTextbox.Text = string.Empty;
-            TermSeasontextBox.Text = string.Empty;
-            TermStarttextBox.Text = string.Empty;
-            TermEndtextBox.Text = string.Empty;
-
-            TermCourse tc = new TermCourse();
-            tc.ShowDialog();
+            
         }
     }
 }

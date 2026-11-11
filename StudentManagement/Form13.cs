@@ -16,12 +16,14 @@ namespace StudentManagement
     {
         private string _username;
         private int _Id;
-        public Form13(string username)
+
+        private string _type;
+        public Form13(string username, string type)
         {
             InitializeComponent();
             _username = username;
             _Id = FindId(_username);
-
+            _type = type;
         }
 
         public int FindId(string username)
@@ -46,7 +48,7 @@ namespace StudentManagement
         private void myCoursesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-           //
+            //
 
 
         }
@@ -61,6 +63,17 @@ namespace StudentManagement
         {
             MyCourse mycourse = new MyCourse(_Id);
             mycourse.Show();
+        }
+
+        private void Form13_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePassword cp = new ChangePassword(_type,_username);
+            cp.ShowDialog();
         }
     }
 }

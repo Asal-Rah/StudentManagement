@@ -12,8 +12,12 @@ namespace StudentManagement
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        private string _username;
+        private string _type;
+        public Form2(string username, string type)
         {
+            _username = username;
+            _type = type;
             InitializeComponent();
         }
 
@@ -63,6 +67,19 @@ namespace StudentManagement
         {
             Term DefineTerm = new Term();
             DefineTerm.ShowDialog();
+        }
+
+
+        private void addCourseToTermsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TermCourse tc = new TermCourse();
+            tc.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePassword cp = new ChangePassword( _type, _username);
+            cp.ShowDialog();
         }
     }
 }

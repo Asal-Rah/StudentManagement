@@ -31,13 +31,15 @@
             menuStrip1 = new MenuStrip();
             coursesToolStripMenuItem = new ToolStripMenuItem();
             myCoursesToolStripMenuItem = new ToolStripMenuItem();
+            accountToolStripMenuItem = new ToolStripMenuItem();
+            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { coursesToolStripMenuItem, myCoursesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { coursesToolStripMenuItem, myCoursesToolStripMenuItem, accountToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 37);
@@ -62,6 +64,22 @@
             myCoursesToolStripMenuItem.Text = "My Courses";
             myCoursesToolStripMenuItem.Click += myCoursesToolStripMenuItem_Click_1;
             // 
+            // accountToolStripMenuItem
+            // 
+            accountToolStripMenuItem.BackColor = Color.MistyRose;
+            accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { changePasswordToolStripMenuItem });
+            accountToolStripMenuItem.Font = new Font("Lucida Calligraphy", 13.8F);
+            accountToolStripMenuItem.Name = "accountToolStripMenuItem";
+            accountToolStripMenuItem.Size = new Size(130, 33);
+            accountToolStripMenuItem.Text = "Account";
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            changePasswordToolStripMenuItem.Size = new Size(312, 34);
+            changePasswordToolStripMenuItem.Text = "Change Password";
+            changePasswordToolStripMenuItem.Click += changePasswordToolStripMenuItem_Click;
+            // 
             // Form13
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -71,6 +89,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form13";
             Text = "Form13";
+            Load += Form13_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -82,5 +101,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem coursesToolStripMenuItem;
         private ToolStripMenuItem myCoursesToolStripMenuItem;
+        private ToolStripMenuItem accountToolStripMenuItem;
+        private ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

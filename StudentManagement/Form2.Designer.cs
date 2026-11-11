@@ -41,6 +41,8 @@
             professorsListToolStripMenuItem = new ToolStripMenuItem();
             termToolStripMenuItem = new ToolStripMenuItem();
             defineNewTermToolStripMenuItem = new ToolStripMenuItem();
+            addCourseToTermsToolStripMenuItem = new ToolStripMenuItem();
+            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -87,7 +89,7 @@
             // adminsToolStripMenuItem
             // 
             adminsToolStripMenuItem.BackColor = Color.MistyRose;
-            adminsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addANewAdminToolStripMenuItem });
+            adminsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addANewAdminToolStripMenuItem, changePasswordToolStripMenuItem });
             adminsToolStripMenuItem.Font = new Font("Lucida Calligraphy", 13.8F);
             adminsToolStripMenuItem.Name = "adminsToolStripMenuItem";
             adminsToolStripMenuItem.Size = new Size(123, 33);
@@ -133,7 +135,7 @@
             // termToolStripMenuItem
             // 
             termToolStripMenuItem.BackColor = Color.MistyRose;
-            termToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { defineNewTermToolStripMenuItem });
+            termToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { defineNewTermToolStripMenuItem, addCourseToTermsToolStripMenuItem });
             termToolStripMenuItem.Font = new Font("Lucida Calligraphy", 13.8F);
             termToolStripMenuItem.Name = "termToolStripMenuItem";
             termToolStripMenuItem.Size = new Size(92, 33);
@@ -142,9 +144,23 @@
             // defineNewTermToolStripMenuItem
             // 
             defineNewTermToolStripMenuItem.Name = "defineNewTermToolStripMenuItem";
-            defineNewTermToolStripMenuItem.Size = new Size(319, 34);
+            defineNewTermToolStripMenuItem.Size = new Size(360, 34);
             defineNewTermToolStripMenuItem.Text = "Define New Term";
             defineNewTermToolStripMenuItem.Click += defineNewTermToolStripMenuItem_Click;
+            // 
+            // addCourseToTermsToolStripMenuItem
+            // 
+            addCourseToTermsToolStripMenuItem.Name = "addCourseToTermsToolStripMenuItem";
+            addCourseToTermsToolStripMenuItem.Size = new Size(360, 34);
+            addCourseToTermsToolStripMenuItem.Text = "Add Course To Terms";
+            addCourseToTermsToolStripMenuItem.Click += addCourseToTermsToolStripMenuItem_Click;
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            changePasswordToolStripMenuItem.Size = new Size(320, 34);
+            changePasswordToolStripMenuItem.Text = "Change Password";
+            changePasswordToolStripMenuItem.Click += changePasswordToolStripMenuItem_Click;
             // 
             // Form2
             // 
@@ -176,5 +192,7 @@
         private ToolStripMenuItem professorsListToolStripMenuItem;
         private ToolStripMenuItem termToolStripMenuItem;
         private ToolStripMenuItem defineNewTermToolStripMenuItem;
+        private ToolStripMenuItem addCourseToTermsToolStripMenuItem;
+        private ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

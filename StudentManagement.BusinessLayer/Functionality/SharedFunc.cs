@@ -92,5 +92,52 @@ namespace StudentManagement.BusinessLayer.Functionality
 
             return false;
         }
+
+
+        public static bool ChangePassword (ChangePasswordDto dto, string type)
+        {
+            string connection = "Data Source=.;Initial Catalog=StudentManagement;Integrated Security=True;TrustServerCertificate=True";
+            SqlConnection con = new SqlConnection(connection);
+
+            con.Open();
+
+
+
+            string tableName = type switch
+            {
+                "student" => "StdCredentials",
+                "admin" => "AdminCredentials"
+            };
+
+
+            string checkOldPassquery = $"select password from {tableName} where username = '{dto.username}'";
+            string UpdatePassquery = $"Update {tableName} set password = '{dto.NewPass}' where username = '{dto.username}'";
+            using (SqlCommand cmd = new SqlCommand(checkOldPassquery, con))
+            {
+                string retreivedPass = Convert.ToString(cmd.ExecuteScalar());
+                if (!dto.OldPass.Equals(retreivedPass))
+                {
+                    con.Close();
+                    return false;
+                }
+
+            }
+
+            using (SqlCommand cmd = new SqlCommand(UpdatePassquery,con))
+            {
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+                catch(Exception e )
+                {
+                    con.Close();
+                    return false;
+
+                }
+            }
+        }
     }
 }

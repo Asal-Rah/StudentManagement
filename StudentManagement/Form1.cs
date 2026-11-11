@@ -28,12 +28,12 @@ namespace StudentManagement
             {
                 if(_type.Equals("admin"))
                 {
-                    Form2 HomePage = new Form2();
+                    Form2 HomePage = new Form2(usernameTextBox.Text,_type);
                     HomePage.ShowDialog();
                 }
                 else if (_type.Equals("student"))
                 {
-                    Form13 StudentDashboard = new Form13(usernameTextBox.Text);
+                    Form13 StudentDashboard = new Form13(usernameTextBox.Text, _type);
                     StudentDashboard.ShowDialog();
                 }
                 
