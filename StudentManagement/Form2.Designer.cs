@@ -39,13 +39,15 @@
             profileToolStripMenuItem = new ToolStripMenuItem();
             registerToolStripMenuItem1 = new ToolStripMenuItem();
             professorsListToolStripMenuItem = new ToolStripMenuItem();
+            termToolStripMenuItem = new ToolStripMenuItem();
+            defineNewTermToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { homePage, adminsToolStripMenuItem, professorsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { homePage, adminsToolStripMenuItem, professorsToolStripMenuItem, termToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 37);
@@ -128,6 +130,22 @@
             professorsListToolStripMenuItem.Text = "Professors List";
             professorsListToolStripMenuItem.Click += professorsListToolStripMenuItem_Click;
             // 
+            // termToolStripMenuItem
+            // 
+            termToolStripMenuItem.BackColor = Color.MistyRose;
+            termToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { defineNewTermToolStripMenuItem });
+            termToolStripMenuItem.Font = new Font("Lucida Calligraphy", 13.8F);
+            termToolStripMenuItem.Name = "termToolStripMenuItem";
+            termToolStripMenuItem.Size = new Size(92, 33);
+            termToolStripMenuItem.Text = "Term";
+            // 
+            // defineNewTermToolStripMenuItem
+            // 
+            defineNewTermToolStripMenuItem.Name = "defineNewTermToolStripMenuItem";
+            defineNewTermToolStripMenuItem.Size = new Size(319, 34);
+            defineNewTermToolStripMenuItem.Text = "Define New Term";
+            defineNewTermToolStripMenuItem.Click += defineNewTermToolStripMenuItem_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -156,5 +174,7 @@
         private ToolStripMenuItem profileToolStripMenuItem;
         private ToolStripMenuItem registerToolStripMenuItem1;
         private ToolStripMenuItem professorsListToolStripMenuItem;
+        private ToolStripMenuItem termToolStripMenuItem;
+        private ToolStripMenuItem defineNewTermToolStripMenuItem;
     }
 }

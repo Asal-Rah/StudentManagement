@@ -58,5 +58,11 @@ namespace StudentManagement
             Form9 ProfProfile = new Form9();
             ProfProfile.ShowDialog();
         }
+
+        private void defineNewTermToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Term DefineTerm = new Term();
+            DefineTerm.ShowDialog();
+        }
     }
 }
